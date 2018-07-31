@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">
+    Todos Application
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title">Add Todo</h5>
+
+    <div>
+      <input class="form-control" type="text" [(ngModel)]="addTodoLabel" (keyup.enter)="addTodo()" placeholder="+ Add a todo..."
+        maxlength="15">
+    </div>
+
+    <br>
+
+    <h6 class="label label-default" *ngIf="todos.length">TODO's:</h6>
+
+    <!-- <div *ngIf="isLoading" else #loading> -->
+    <div class="alert alert-danger" role="alert" *ngIf="!todos.length">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      You don't have any todo's
+    </div>
+
+    <div *ngFor="let todo of todos" class="row">
+
+      <div *ngIf="!todo.isTodoEdit" class="col">{{todo.label}}</div>
+      <input *ngIf="todo.isTodoEdit" class="col" type="text" [(ngModel)]="editTodoLabel" (keyup.enter)="editTodo(todo, editTodoLabel)"
+        maxlength="15">
+
+      <div class="col-5">
+        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-primary" (click)="onEditTodo(todo)">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-danger" (click)="onDeleteTodo(todo)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <button *ngIf="todo.showConfirmDelete" class="btn btn-sm btn-danger" (click)="onConfirmDeleteTodo(todo)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <button *ngIf="todo.isTodoEdit" class="btn btn-sm btn-success" (click)="editTodo(todo, editTodoLabel)">
+          <i class="fas fa-check"></i>
+        </button>
+        <button *ngIf="todo.isTodoEdit || todo.showConfirmDelete" class="btn btn-sm btn-primary" (click)="onCancelTodo(todo)">
+          <i class="fas fa-undo"></i>
+        </button>
+      </div>
+
+      <!-- </div> -->
+    </div>
+
+    <!--  <ng-template #loading>Loading...</ng-template> -->
+
+  </div>
+
+</div>
