@@ -22,26 +22,26 @@
       You don't have any todo's
     </div>
 
-    <div *ngFor="let todo of todos" class="row">
+    <div *ngFor="let todo of todos" class="row form-group">
 
       <div *ngIf="!todo.isTodoEdit" class="col">{{todo.label}}</div>
       <input *ngIf="todo.isTodoEdit" class="col" type="text" [(ngModel)]="editTodoLabel" (keyup.enter)="editTodo(todo, editTodoLabel)"
         maxlength="15">
 
       <div class="col-5">
-        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-primary" (click)="onEditTodo(todo)">
+        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-primary ml-2" (click)="onEditTodo(todo)">
           <i class="fas fa-pencil-alt"></i>
         </button>
-        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-danger" (click)="onDeleteTodo(todo)">
+        <button *ngIf="!todo.isTodoEdit && !todo.showConfirmDelete" class="btn btn-sm btn-danger ml-2" (click)="onDeleteTodo(todo)">
           <i class="far fa-trash-alt"></i>
         </button>
-        <button *ngIf="todo.showConfirmDelete" class="btn btn-sm btn-danger" (click)="onConfirmDeleteTodo(todo)">
+        <button *ngIf="todo.showConfirmDelete" class="btn btn-sm btn-danger ml-2" (click)="onConfirmDeleteTodo(todo)">
           <i class="far fa-trash-alt"></i>
         </button>
-        <button *ngIf="todo.isTodoEdit" class="btn btn-sm btn-success" (click)="editTodo(todo, editTodoLabel)">
+        <button *ngIf="todo.isTodoEdit" class="btn btn-sm btn-success ml-2" (click)="editTodo(todo, editTodoLabel)">
           <i class="fas fa-check"></i>
         </button>
-        <button *ngIf="todo.isTodoEdit || todo.showConfirmDelete" class="btn btn-sm btn-primary" (click)="onCancelTodo(todo)">
+        <button *ngIf="todo.isTodoEdit || todo.showConfirmDelete" class="btn btn-sm btn-primary ml-2" (click)="onCancelTodo(todo)">
           <i class="fas fa-undo"></i>
         </button>
       </div>
